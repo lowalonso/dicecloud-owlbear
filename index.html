@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DiceCloud Roller</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <div class="hero">
+          <div id="avatar" class="avatar" aria-hidden="true">?</div>
+          <div class="who">
+            <h1 id="charName">DiceCloud Roller</h1>
+            <p id="charSub">Sua ficha na mesa</p>
+          </div>
+          <button id="reload" class="icon-btn" title="Recarregar ficha" aria-label="Recarregar ficha">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg>
+          </button>
+          <button id="openSettings" class="icon-btn" title="Opções" aria-label="Opções">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          </button>
+        </div>
+        <div id="quick" class="quick"></div>
+
+        <nav class="tabs" aria-label="Seções da ficha" hidden>
+          <button data-tab="ficha" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 3v18M4 7.5l8 4.5 8-4.5"/></svg><span>Ficha</span></button>
+          <button data-tab="acoes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></svg><span>Combate</span></button>
+          <button data-tab="magias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>Magias</span></button>
+          <button data-tab="itens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Itens</span></button>
+          <button data-tab="mais"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg><span>Mais</span></button>
+          <button data-tab="log"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Log</span></button>
+        </nav>
+
+        <div id="modes" class="modes" role="radiogroup" aria-label="Modo da rolagem" hidden>
+          <button data-mode="dis" role="radio" aria-checked="false">Desvantagem</button>
+          <button data-mode="normal" role="radio" aria-checked="true" class="active">Normal</button>
+          <button data-mode="adv" role="radio" aria-checked="false">Vantagem</button>
+        </div>
+      </header>
+
+      <main id="sheet"></main>
+    </div>
+
+    <section id="settings" class="sheet-overlay" hidden aria-label="Opções">
+      <div class="overlay-head">
+        <h2>Opções</h2>
+        <button id="closeSettings" class="icon-btn" aria-label="Fechar opções">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="card">
+        <label class="field">Link da ficha no DiceCloud
+          <input id="link" type="url" placeholder="https://dicecloud.com/character/…" />
+        </label>
+        <button id="save" class="btn primary wide">Salvar e carregar</button>
+      </div>
+
+      <div class="card">
+        <h3>Salvar alterações na ficha</h3>
+        <p class="note">Sem entrar, vida, espaços e usos ficam só neste navegador. Entrando, cada alteração também vai para o DiceCloud.</p>
+        <div id="loginForm">
+          <input id="user" type="text" placeholder="Usuário ou e-mail" autocomplete="username" />
+          <input id="pass" type="password" placeholder="Senha" autocomplete="current-password" />
+          <button id="doLogin" class="btn wide">Entrar no DiceCloud</button>
+        </div>
+        <div id="loggedIn" class="row between" hidden>
+          <span class="ok-dot">Conectado ao DiceCloud</span>
+          <button id="logout" class="btn ghost">Sair</button>
+        </div>
+        <p id="loginState" class="note"></p>
+        <p class="note small">A senha vai direto para o DiceCloud e não é guardada; só o token de acesso fica salvo neste navegador.</p>
+      </div>
+
+      <details class="card advanced">
+        <summary>Avançado</summary>
+        <label class="field">Proxy CORS (deixe vazio)
+          <input id="proxy" type="text" placeholder="https://meu-proxy.exemplo/?" />
+        </label>
+      </details>
+    </section>
+
+    <div id="status" class="snackbar" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>
