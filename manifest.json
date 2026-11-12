@@ -5,10 +5,10 @@
   "description": "Sua ficha do DiceCloud (D&D 5e) dentro do Owlbear: vida, ações, magias, itens e rolagens.",
   "action": {
     "title": "DiceCloud Roller",
-    "icon": "/icon.svg",
-    "popover": "/index.html",
+    "icon": "/dicecloud-owlbear/icon.svg",
+    "popover": "/dicecloud-owlbear/index.html",
     "height": 720,
     "width": 420
   },
-  "background_url": "/background.html"
+  "background_url": "/dicecloud-owlbear/background.html"
 }
